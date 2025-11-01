@@ -25,6 +25,7 @@ seesaw.addEventListener("click", (event) => {
   seesaw.appendChild(object);
   objects.push({ distanceToCenter, weight });
   updateSeesawTilt();
+  updateTotalWeights();
 });
 
 const updateSeesawTilt = () => {
@@ -52,4 +53,22 @@ const calculateSeesawAngle = (objects) => {
 
   const torqueDiff = rightTorque - leftTorque;
   return clampAngle(torqueDiff);
+};
+
+const updateTotalWeights = () => {
+  const { leftWeight, rightWeight } = calculateTotalWeights(objects);
+  document.querySelector("#left-weight-info").textContent = leftWeight;
+  document.querySelector("#right-weight-info").textContent = rightWeight;
+};
+
+const calculateTotalWeights = (objects) => {
+  let leftWeight = 0;
+  let rightWeight = 0;
+  objects.forEach((object) => {
+    if (object.distanceToCenter > 0) leftWeight += object.weight;
+    else {
+      rightWeight += object.weight;
+    }
+  });
+  return { leftWeight, rightWeight };
 };
