@@ -56,7 +56,6 @@ export const getSeesawRect = () => {
 
 export const clearObjects = () => {
   seesaw.querySelectorAll(".object").forEach((object) => object.remove());
-  if (labels.length > 0) labels.length = 0;
 };
 
 export const clearHistory = () => {

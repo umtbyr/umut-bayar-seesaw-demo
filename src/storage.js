@@ -19,6 +19,14 @@ export const getState = () => {
   }
 };
 
+export const resetState = () => {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (error) {
+    console.log("Failed to reset the game state! ", error);
+  }
+};
+
 export const debouncedSave = (state, delay = 500) => {
   clearTimeout(timeOut);
   timeOut = setTimeout(() => saveState(state), delay);
