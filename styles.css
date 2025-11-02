@@ -80,8 +80,8 @@ button {
   height: 500px;
   background: linear-gradient(
     to top,
-    rgb(160, 255, 148) -20%,
-    rgb(137, 212, 241) 50%
+    rgb(0, 0, 0) -20%,
+    rgb(247, 247, 247) 50%
   );
   position: relative;
   overflow: hidden;
@@ -95,8 +95,9 @@ button {
   border: 1px solid var(--color-bg-medium-gray);
   text-align: center;
   color: var(--color-bg-light-gray);
-  background: #7aa1c7;
+  background: #61676d;
   font-size: medium;
+  font-weight: bold;
 }
 #reset-button:hover {
   transform: scale(1.05);
@@ -133,7 +134,8 @@ button {
   display: flex;
   background: var(--color-bg-light-gray);
   height: 100%;
-  align-items: start;
+  align-items: center;
+  justify-content: center;
   background: #ffffff;
 }
 
@@ -142,8 +144,18 @@ button {
   border-radius: 50%;
   font-size: x-large;
 }
+
 #mute-btn:hover {
   transform: scale(1.2);
+}
+
+#volume-input {
+  width: 60px;
+  height: 8px;
+  transform: rotate(-90deg);
+  background: var(--color-bg-medium-gray);
+  border-radius: 0.25rem;
+  cursor: pointer;
 }
 
 .info-box {

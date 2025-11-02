@@ -9,6 +9,7 @@ const tiltAngleInfo = document.querySelector("#tilt-angle-info");
 const resetButton = document.querySelector("#reset-button");
 const historySection = document.querySelector("#game-history-section");
 const muteButton = document.querySelector("#mute-btn");
+const volumeInput = document.querySelector("#volume-input");
 
 export const renderObject = ({ positionX, weight, color }) => {
   const size = weight * OBJECT_SIZE_FACTOR + "px";
@@ -52,8 +53,15 @@ export const getSeesawElement = () => {
 
 export const updateMuteIcon = () => {
   SoundEffectManager.toggleMute();
+  if (SoundEffectManager.muted) {
+    volumeInput.style.visibility = "hidden";
+  } else {
+    volumeInput.style.visibility = "visible";
+  }
   muteButton.textContent = SoundEffectManager.muted ? "🔇" : "🔊";
 };
+
+export const updateVolume = () => {};
 
 export const clearObjects = () => {
   seesaw.querySelectorAll(".object").forEach((object) => object.remove());
@@ -75,4 +83,13 @@ export const setSeesawClickHandler = (handler) => {
 
 export const setMuteButtonClickHandler = (handler) => {
   muteButton.addEventListener("click", handler);
+};
+
+export const setVolumeInputClcikHandler = () => {
+  volumeInput.addEventListener("input", () => {
+    const value = volumeInput.value;
+    console.log(value);
+
+    SoundEffectManager.setVolume(value / 100);
+  });
 };

@@ -14,6 +14,7 @@ import {
   getSeesawElement,
   setMuteButtonClickHandler,
   updateMuteIcon,
+  setVolumeInputClcikHandler,
 } from "./ui.js";
 import {
   getRandomInt,
@@ -97,3 +98,4 @@ const handleReset = () => {
 setSeesawClickHandler(handleOnSeesawClick);
 setResetButtonHandler(handleReset);
 setMuteButtonClickHandler(updateMuteIcon);
+setVolumeInputClcikHandler();
