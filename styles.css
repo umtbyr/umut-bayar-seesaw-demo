@@ -148,7 +148,6 @@ body {
   align-items: center;
   justify-content: center;
   padding: 10px;
-  transform: translateX(-50%);
   background: var(--color-object);
   color: #ffffff;
   transform: translate(-50%, -80px);

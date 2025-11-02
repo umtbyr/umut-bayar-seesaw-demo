@@ -35,7 +35,7 @@ export const renderHistoryItem = ({ weight, distanceToCenter }) => {
 };
 
 export const setAngle = (angle) => {
-  tiltAngleInfo.textContent = angle.toFixed(2);
+  tiltAngleInfo.textContent = `${angle.toFixed(2)}°`;
   seesaw.style.transform = `translateX(-50%) translateY(-50%) rotate(${angle}deg)`;
 
   labels.forEach((label) => {
@@ -44,12 +44,12 @@ export const setAngle = (angle) => {
 };
 
 export const setWeightInfo = ({ leftWeight, rightWeight }) => {
-  leftWeightInfo.textContent = leftWeight;
-  rightWeightInfo.textContent = rightWeight;
+  leftWeightInfo.textContent = `${leftWeight} kg`;
+  rightWeightInfo.textContent = `${rightWeight} kg`;
 };
 
 export const setNextWeightInfo = (nextWeight) => {
-  nextWeightInfo.textContent = nextWeight;
+  nextWeightInfo.textContent = `${nextWeight} kg`;
 };
 
 export const getSeesawElement = () => {
