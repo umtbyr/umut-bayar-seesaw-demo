@@ -1,4 +1,9 @@
-import { MAX_TILT_ANGLE, TILT_SENSITIVITY } from "./const.js";
+import {
+  DEFAULT_SOUND_PREFERENCES,
+  MAX_TILT_ANGLE,
+  TILT_SENSITIVITY,
+} from "./const.js";
+import { getSoundPreferences, setSoundPreferences } from "./storage.js";
 
 export const getRandomInt = () => {
   return Math.floor(Math.random() * 10) + 1;
@@ -55,4 +60,12 @@ export const createHistoryItemContent = ({ weight, distanceToCenter }) => {
   return `📦 ${weight} kg dropped on ${
     distanceToCenter > 0 ? "left" : "right"
   } side at ${distanceToCenter.toFixed(1)}px from center`;
+};
+
+export const loadSoundPreferences = () => {
+  const preferences = getSoundPreferences();
+  console.log(preferences);
+
+  if (!preferences) return DEFAULT_SOUND_PREFERENCES;
+  return preferences;
 };

@@ -1,5 +1,9 @@
 import { OBJECT_SIZE_FACTOR } from "./const.js";
 import { SoundEffectManager } from "./soundEffectManager.js";
+import {
+  setSoundPreferences,
+  setSoundPreferencesDebounced,
+} from "./storage.js";
 
 const seesaw = document.querySelector("#seesaw");
 const nextWeightInfo = document.querySelector("#next-weight-info");
@@ -52,7 +56,6 @@ export const getSeesawElement = () => {
 };
 
 export const updateMuteIcon = () => {
-  SoundEffectManager.toggleMute();
   if (SoundEffectManager.muted) {
     volumeInput.style.visibility = "hidden";
   } else {
@@ -61,7 +64,9 @@ export const updateMuteIcon = () => {
   muteButton.textContent = SoundEffectManager.muted ? "🔇" : "🔊";
 };
 
-export const updateVolume = () => {};
+export const updateVolumeInput = (value) => {
+  volumeInput.value = value * 100;
+};
 
 export const clearObjects = () => {
   seesaw.querySelectorAll(".object").forEach((object) => object.remove());
@@ -73,6 +78,8 @@ export const clearHistory = () => {
     .forEach((item) => item.remove());
 };
 
+//handlers
+
 export const setResetButtonHandler = (handler) => {
   resetButton.addEventListener("click", handler);
 };
@@ -81,15 +88,18 @@ export const setSeesawClickHandler = (handler) => {
   seesaw.addEventListener("click", handler);
 };
 
-export const setMuteButtonClickHandler = (handler) => {
-  muteButton.addEventListener("click", handler);
+export const setMuteButtonClickHandler = () => {
+  muteButton.addEventListener("click", () => {
+    SoundEffectManager.toggleMute();
+    setSoundPreferences({ muted: SoundEffectManager.muted });
+    updateMuteIcon();
+  });
 };
 
 export const setVolumeInputClcikHandler = () => {
   volumeInput.addEventListener("input", () => {
-    const value = volumeInput.value;
-    console.log(value);
-
+    const value = volumeInput.value / 100;
     SoundEffectManager.setVolume(value / 100);
+    setSoundPreferencesDebounced({ volume: value });
   });
 };

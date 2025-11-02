@@ -30,6 +30,10 @@ export class SoundEffectManager {
     this.muted = !this.muted;
   }
 
+  static setMuted(muted) {
+    this.muted = muted;
+  }
+
   static setVolume(volume) {
     this.volume = Math.min(volume, 1);
   }

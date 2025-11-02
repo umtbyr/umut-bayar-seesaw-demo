@@ -15,17 +15,25 @@ import {
   setMuteButtonClickHandler,
   updateMuteIcon,
   setVolumeInputClcikHandler,
+  updateVolumeInput,
 } from "./ui.js";
 import {
   getRandomInt,
   getCoordinateOnSeesaw,
   getRandomColor,
   createHistoryItemContent,
+  loadSoundPreferences,
 } from "./utils.js";
 
 const objects = [];
 const historyItems = [];
 SoundEffectManager.loadSound({ key: "drop", path: "/sfx/drop.wav" });
+const prefs = loadSoundPreferences();
+SoundEffectManager.setVolume(prefs.volume);
+SoundEffectManager.setMuted(prefs.muted);
+updateMuteIcon();
+updateVolumeInput(prefs.volume);
+
 let nextWeight = getRandomInt();
 let angle = 0;
 const savedState = getState();
@@ -97,5 +105,5 @@ const handleReset = () => {
 
 setSeesawClickHandler(handleOnSeesawClick);
 setResetButtonHandler(handleReset);
-setMuteButtonClickHandler(updateMuteIcon);
+setMuteButtonClickHandler();
 setVolumeInputClcikHandler();
