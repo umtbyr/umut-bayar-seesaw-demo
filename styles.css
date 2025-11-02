@@ -119,6 +119,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: bolder;
   transition: transform 0.2s linear;
 }
 @keyframes fall {

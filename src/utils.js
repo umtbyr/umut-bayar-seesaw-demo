@@ -17,3 +17,36 @@ export const getRandomColor = () => {
   const b = Math.floor(Math.random() * 256);
   return `rgb(${r}, ${g}, ${b})`;
 };
+
+export const getCoordinateOnSeesaw = (event, seesaw, angle) => {
+  /* 
+  since we rotate the seesaw we should get the projection 
+  of the user's click on the seesaw to 
+  put the object exactly where it sholud be 
+  */
+
+  const rect = seesaw.getBoundingClientRect();
+
+  /* getting the screen coordinates of the seesaw center */
+  const screenCenterX = rect.left + rect.width / 2;
+  const screenCenterY = rect.top + rect.height / 2;
+
+  /* calculate the difference between user's click and the center of the seesaw */
+  const diffX = event.clientX - screenCenterX;
+  const diffY = event.clientY - screenCenterY;
+
+  const radian = (angle * Math.PI) / 180;
+  /* using dot product formula to find the distance between user's click and the center */
+  const projection = diffX * Math.cos(radian) + diffY * Math.sin(radian);
+
+  /*   using clientWidth since getBoundingClientRect().width will not give the
+   exact width after rotation */
+  const widthAfterRotation = seesaw.clientWidth;
+
+  let coordinateOnSeesaw = projection + widthAfterRotation / 2;
+
+  if (coordinateOnSeesaw < 0) coordinateOnSeesaw = 0;
+  else if (coordinateOnSeesaw > widthAfterRotation)
+    coordinateOnSeesaw = widthAfterRotation;
+  return coordinateOnSeesaw;
+};

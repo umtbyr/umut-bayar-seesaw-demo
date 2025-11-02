@@ -43,7 +43,7 @@ export const setNextWeightInfo = (nextWeight) => {
 };
 
 export const getSeesawRect = () => {
-  return seesaw.getBoundingClientRect();
+  return seesaw;
 };
 
 export const setSeesawClickHandler = (handler) => {
