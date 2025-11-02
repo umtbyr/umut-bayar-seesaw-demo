@@ -1,5 +1,6 @@
 import { calculateSeesawAngle, calculateTotalWeights } from "./physics.js";
-import { debouncedSave, getState, resetState, saveState } from "./storage.js";
+import { SoundEffectManager } from "./soundEffectManager.js";
+import { debouncedSave, getState, resetState } from "./storage.js";
 import {
   clearObjects,
   renderObject,
@@ -21,6 +22,7 @@ import {
 
 const objects = [];
 const historyItems = [];
+SoundEffectManager.loadSound({ key: "drop", path: "/sfx/drop.wav" });
 let nextWeight = getRandomInt();
 let angle = 0;
 const savedState = getState();
@@ -42,8 +44,9 @@ if (savedState) {
   setAngle(angle);
   setWeightInfo(calculateTotalWeights(objects));
   setNextWeightInfo(nextWeight);
+} else {
+  setNextWeightInfo(nextWeight);
 }
-setNextWeightInfo(nextWeight);
 
 const handleOnSeesawClick = (event) => {
   const seesaw = getSeesawElement();
@@ -69,6 +72,7 @@ const handleOnSeesawClick = (event) => {
   setWeightInfo(calculateTotalWeights(objects));
   nextWeight = getRandomInt();
   setNextWeightInfo(nextWeight);
+  SoundEffectManager.playSound("drop");
   debouncedSave({
     objects,
     nextWeight,
