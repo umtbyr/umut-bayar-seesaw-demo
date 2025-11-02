@@ -6,6 +6,7 @@ const nextWeightInfo = document.querySelector("#next-weight-info");
 const leftWeightInfo = document.querySelector("#left-weight-info");
 const rightWeightInfo = document.querySelector("#right-weight-info");
 const tiltAngleInfo = document.querySelector("#tilt-angle-info");
+const resetButton = document.querySelector("#reset-button");
 const labels = [];
 
 export const renderObject = ({ positionX, weight }) => {
@@ -44,6 +45,15 @@ export const setNextWeightInfo = (nextWeight) => {
 
 export const getSeesawRect = () => {
   return seesaw;
+};
+
+export const clearObjects = () => {
+  seesaw.querySelectorAll(".object").forEach((object) => object.remove());
+  if (labels.length > 0) labels.length = 0;
+};
+
+export const setResetButtonHandler = (handler) => {
+  resetButton.addEventListener("click", handler);
 };
 
 export const setSeesawClickHandler = (handler) => {

@@ -1,9 +1,11 @@
 import { calculateSeesawAngle, calculateTotalWeights } from "./physics.js";
 import {
+  clearObjects,
   getSeesawRect,
   renderObject,
   setAngle,
   setNextWeightInfo,
+  setResetButtonHandler,
   setSeesawClickHandler,
   setWeightInfo,
 } from "./ui.js";
@@ -33,4 +35,14 @@ const handleOnSeesawClick = (event) => {
   setNextWeightInfo(nextWeight);
 };
 
+const handleReset = () => {
+  if (objects.length > 0) objects.length = 0;
+  angle = 0;
+  setAngle(angle);
+  clearObjects();
+  setWeightInfo({ leftWeight: 0, rightWeight: 0 });
+  nextWeight = getRandomInt();
+};
+
 setSeesawClickHandler(handleOnSeesawClick);
+setResetButtonHandler(handleReset);

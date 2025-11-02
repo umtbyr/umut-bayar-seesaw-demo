@@ -1,9 +1,9 @@
 :root {
-  --color-bg-light: #ffffff;
-  --color-bg-medium: #e2e7ee;
-  --color-bg-dark: #b2b5ba;
-  --color-plank: #b78f1a;
-  --color-pivot: #3d3c3b;
+  --color-bg-white: #ffffff;
+  --color-bg-light-gray: #e2e7ee;
+  --color-bg-medium-gray: #b2b5ba;
+  --color-plank: #5d4e37;
+  --color-pivot: #1a1817;
   --color-text: #435a70;
   --color-object: #eee9e7;
 }
@@ -20,7 +20,7 @@ body {
   justify-content: center;
   align-items: center;
   color: var(--color-text);
-  background: var(--color-bg-medium);
+  background: var(--color-bg-light-gray);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
@@ -33,7 +33,7 @@ body {
   padding: 6rem;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--color-bg-light);
+  background-color: var(--color-bg-white);
 }
 
 #game-info-section {
@@ -46,9 +46,31 @@ body {
 #playground {
   width: 800px;
   height: 500px;
-  background: var(--color-bg-dark);
+  background: linear-gradient(
+    to top,
+    rgb(116, 226, 116) 35%,
+    rgb(137, 212, 241) 50%
+  );
   position: relative;
   overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#reset-button {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-bg-medium-gray);
+  text-align: center;
+  color: var(--color-bg-light-gray);
+  cursor: pointer;
+  background: #4fa1ee;
+  font-size: medium;
+  font-weight: bold;
+}
+#reset-button:hover {
+  background: #2690f3;
+  transform: scale(1.05);
 }
 
 #seesaw {
@@ -83,7 +105,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: var(--color-bg-medium);
+  background: var(--color-bg-light-gray);
   padding: 1rem;
   border-radius: 0.25rem;
   .label {
