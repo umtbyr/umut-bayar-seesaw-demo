@@ -3,7 +3,6 @@ import { calculateSeesawAngle, calculateTotalWeights } from "./physics.js";
 import { getState, saveState } from "./storage.js";
 import {
   clearObjects,
-  getSeesawRect,
   renderObject,
   setAngle,
   setNextWeightInfo,
@@ -12,6 +11,7 @@ import {
   setWeightInfo,
   renderHistoryItem,
   clearHistory,
+  getSeesawElement,
 } from "./ui.js";
 import { getRandomInt, getCoordinateOnSeesaw } from "./utils.js";
 
@@ -22,7 +22,7 @@ const savedState = getState();
 if (savedState) {
   savedState.objects.forEach((object) => {
     renderObject({
-      positionX: SEESAW_CENTER_POINT - object.distanceToCenter,
+      positionX: getSeesawElement().clientWidth / 2 - object.distanceToCenter,
       weight: object.weight,
     });
     objects.push(object);
@@ -36,7 +36,7 @@ if (savedState) {
 setNextWeightInfo(nextWeight);
 
 const handleOnSeesawClick = (event) => {
-  const seesaw = getSeesawRect();
+  const seesaw = getSeesawElement();
   const leftPx = getCoordinateOnSeesaw(event, seesaw, angle);
   renderObject({ positionX: leftPx, weight: nextWeight });
   /* 

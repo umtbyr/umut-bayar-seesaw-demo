@@ -53,6 +53,10 @@ export const setNextWeightInfo = (nextWeight) => {
   nextWeightInfo.textContent = nextWeight;
 };
 
+export const getSeesawElement = () => {
+  return seesaw;
+};
+
 export const getSeesawRect = () => {
   return seesaw;
 };
