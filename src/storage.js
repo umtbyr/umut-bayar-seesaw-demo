@@ -1,10 +1,10 @@
 const STORAGE_KEY = "seesaw-game-state";
-
+let timeOut;
 export const saveState = (state) => {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   } catch (error) {
-    console.log("Failed to save the game state! ", err);
+    console.log("Failed to save the game state! ", error);
   }
 };
 
@@ -17,4 +17,9 @@ export const getState = () => {
     console.log("Failed to load the game state! ", error);
     return null;
   }
+};
+
+export const debouncedSave = (state, delay = 500) => {
+  clearTimeout(timeOut);
+  timeOut = setTimeout(() => saveState(state), delay);
 };

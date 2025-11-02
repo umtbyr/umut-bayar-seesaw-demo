@@ -1,6 +1,5 @@
-import { SEESAW_CENTER_POINT } from "./const.js";
 import { calculateSeesawAngle, calculateTotalWeights } from "./physics.js";
-import { getState, saveState } from "./storage.js";
+import { debouncedSave, getState, saveState } from "./storage.js";
 import {
   clearObjects,
   renderObject,
@@ -53,7 +52,7 @@ const handleOnSeesawClick = (event) => {
   setWeightInfo(calculateTotalWeights(objects));
   nextWeight = getRandomInt();
   setNextWeightInfo(nextWeight);
-  saveState({
+  debouncedSave({
     objects,
     nextWeight,
     angle,
