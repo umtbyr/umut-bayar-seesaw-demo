@@ -162,6 +162,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-weight: bolder;
   transition: transform 0.2s linear;
 }

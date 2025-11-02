@@ -68,6 +68,7 @@ const handleReset = () => {
   clearHistory();
   setWeightInfo({ leftWeight: 0, rightWeight: 0 });
   nextWeight = getRandomInt();
+  saveState({ angle, objects: [], nextWeight });
 };
 
 setSeesawClickHandler(handleOnSeesawClick);
